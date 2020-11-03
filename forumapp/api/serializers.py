@@ -6,7 +6,7 @@ from .models import Question
 class QuestionSerializer(ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'content', 'time')
+        fields = ('pk', 'content', 'time')
         extra_kwargs = {
             'id': {'read_only': True}
         }
