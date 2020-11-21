@@ -20,7 +20,10 @@ class AnswerCreateView(ListCreateAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
 
-
 class AnswerDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
+
+class UnanswerView(ListCreateAPIView):
+    queryset = Question.objects.filter(has_answer=False)
+    serializer_class = QuestionSerializer

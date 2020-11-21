@@ -6,4 +6,6 @@ urlpatterns = [
     url(r'^questions/(?P<pk>[0-9]+)$', QuestionDetailView.as_view(), name='question_detail'),
     url(r'^answers/$', AnswerCreateView.as_view(), name='answers'),
     url(r'^answers/(?P<pk>[0-9]+)$', AnswerDetailView.as_view(), name='answer_detail'),
+    #url(r'^questions/$', QuestionCreateView.as_view(), name='unanswered_questions'),
+    url(r'^questions/unanswered', UnanswerView.as_view(), name='unanswered_question_view'),
 ]
