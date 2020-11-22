@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import datetime
 
 # Create your views here.
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
@@ -26,4 +27,8 @@ class AnswerDetailView(RetrieveUpdateDestroyAPIView):
 
 class UnanswerView(ListCreateAPIView):
     queryset = Question.objects.filter(has_answer=False)
+    serializer_class = QuestionSerializer
+
+class RecentView(ListCreateAPIView):
+    queryset = Question.objects.order_by('created_at')[0:10]
     serializer_class = QuestionSerializer
