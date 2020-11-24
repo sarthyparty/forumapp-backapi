@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^answers/$', AnswerCreateView.as_view(), name='answers'),
     url(r'^answers/(?P<pk>[0-9]+)$', AnswerDetailView.as_view(), name='answer_detail'),
     url(r'^questions/recent$', RecentView.as_view(), name='recent_questions'),
-    url(r'^questions/unanswered', UnanswerView.as_view(), name='unanswered_question_view'),
+    url(r'^questions/unanswered$', UnansweredView.as_view(), name='unanswered_question_view'),
 ]
