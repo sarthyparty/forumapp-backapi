@@ -2,6 +2,7 @@ from django.shortcuts import render
 import datetime
 
 # Create your views here.
+from rest_framework import filters
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 
 from .models import *
@@ -9,6 +10,8 @@ from .serializers import QuestionSerializer, AnswerSerializer
 
 
 class QuestionCreateView(ListCreateAPIView):
+    search_fields = ['content']
+    filter_backends = (filters.SearchFilter,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
