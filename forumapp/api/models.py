@@ -2,6 +2,7 @@ from django.db import models
 
 class Question(models.Model):
     content = models.CharField(max_length=10000)
+    author = models.CharField(default='anonymous', max_length=10000)
     created_at = models.DateTimeField(auto_now_add=True)
     email = models.EmailField(default="person@example.com")
     has_answer = models.BooleanField(default=False)
@@ -11,6 +12,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     content = models.CharField(max_length=10000)
+    author = models.CharField(default='anonymous', max_length=10000)
     created_at = models.DateTimeField(auto_now_add=True)
     email = models.EmailField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers")

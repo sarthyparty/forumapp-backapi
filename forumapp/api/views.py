@@ -9,9 +9,12 @@ from .models import *
 from .serializers import QuestionSerializer, AnswerSerializer
 
 
+class DynamicSearchFilter(filters.SearchFilter):
+    def get_search_fields(self, view, request):
+        return request.GET.getlist('search_fields', [])
+        
 class QuestionCreateView(ListCreateAPIView):
-    search_fields = ['content']
-    filter_backends = (filters.SearchFilter,)
+    filter_backends = (DynamicSearchFilter,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
