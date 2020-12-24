@@ -4,6 +4,7 @@ import datetime
 # Create your views here.
 from rest_framework import filters
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from .models import *
 from .serializers import QuestionSerializer, AnswerSerializer
@@ -15,6 +16,7 @@ class DynamicSearchFilter(filters.SearchFilter):
         
 class QuestionCreateView(ListCreateAPIView):
     filter_backends = (DynamicSearchFilter,)
+    permission_classes = (IsAuthenticated,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
